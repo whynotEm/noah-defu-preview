@@ -1,0 +1,42 @@
+---
+import { clinic } from '../data/site';
+import { pathFor, languages, type Language } from '../data/paths';
+import type { Content } from '../i18n/types';
+interface Props { language: Language; content: Content }
+const { language, content } = Astro.props;
+const nav = [
+  { id: 'about', label: content.nav.about },
+  { id: 'services', label: content.nav.services },
+  { id: 'doctor', label: content.nav.doctor },
+  { id: 'contact', label: content.nav.contact },
+];
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={pathFor(language)} aria-label={`${clinic.brand} — ${clinic.polishName}`}>
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <span class="brand-copy"><strong>{clinic.brand}</strong><small>{clinic.polishName}</small></span>
+    </a>
+    <nav class="primary-nav" aria-label={language === 'pl' ? 'Nawigacja główna' : language === 'en' ? 'Main navigation' : '主导航'}>
+      {nav.map((item) => <a href={`#${item.id}`}>{item.label}</a>)}
+    </nav>
+    <div class="header-actions">
+      <nav class="language-nav" aria-label={content.nav.language}>
+        {languages.map((code, index) => <>
+          {index > 0 && <span aria-hidden="true" class="language-divider">/</span>}
+          <a href={pathFor(code)} data-language-link aria-current={code === language ? 'page' : undefined} lang={code === 'zh' ? 'zh-CN' : code === 'pl' ? 'pl-PL' : 'en'}>{code === 'zh' ? '中文' : code.toUpperCase()}</a>
+        </>)}
+      </nav>
+      <a class="button button-primary header-cta" href="#contact">{content.nav.book}<span aria-hidden="true"> ↗</span></a>
+    </div>
+  </div>
+</header>
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('[data-language-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (!window.location.hash || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      window.location.assign(link.href + window.location.hash);
+    });
+  });
+</script>

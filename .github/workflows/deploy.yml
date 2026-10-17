@@ -1,0 +1,40 @@
+name: Deploy NOAH DEFU preview to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+      - name: Install, build and upload static site
+        uses: withastro/action@v6
+        env:
+          # For a repository page, Astro needs the GitHub host and repo subpath.
+          # Set repository variables SITE_URL and BASE_PATH when using a custom domain.
+          SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io', github.repository_owner) }}
+          BASE_PATH: ${{ vars.BASE_PATH || format('/{0}', github.event.repository.name) }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

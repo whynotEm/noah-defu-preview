@@ -1,0 +1,44 @@
+---
+import { certificates } from '../data/site';
+import { asset } from '../data/paths';
+import type { Content } from '../i18n/types';
+interface Props { content: Content }
+const { content } = Astro.props;
+---
+<section id="certificates" class="section certificates-section" aria-labelledby="certificates-title">
+  <div class="container">
+    <div class="section-heading certificates-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span>{content.certificates.eyebrow}</p><h2 id="certificates-title">{content.certificates.title}</h2></div><p>{content.certificates.intro}</p></div>
+    <div class="certificate-grid">
+      {certificates.map((item) => <article class="certificate-card">
+        <button class="certificate-preview" type="button" data-certificate-open data-src={asset(item.image)} data-alt={`${content.certificates.imageAlt} ${item.id}`} aria-label={`${content.certificates.view} ${item.id}`}>
+          <img src={asset(item.image)} alt="" width="600" height="440" loading="lazy" />
+          <span class="preview-icon" aria-hidden="true">↗</span>
+        </button>
+        <div class="certificate-copy"><span class="certificate-index">{item.id} / 03</span><h3>{item.title || content.certificates.placeholderTitle}</h3><p>{item.issuer || content.certificates.issuer}<br />{item.year || content.certificates.year}</p></div>
+      </article>)}
+    </div>
+  </div>
+  <dialog class="certificate-dialog" data-certificate-dialog aria-label={content.certificates.dialogTitle}>
+    <div class="dialog-bar"><span>{content.certificates.dialogTitle}</span><button type="button" data-certificate-close aria-label={content.certificates.close}>×</button></div>
+    <img data-certificate-image src={asset(certificates[0].image)} alt={content.certificates.imageAlt} width="900" height="660" />
+  </dialog>
+</section>
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-certificate-dialog]');
+  const dialogImage = dialog?.querySelector<HTMLImageElement>('[data-certificate-image]');
+  const closeButton = dialog?.querySelector<HTMLButtonElement>('[data-certificate-close]');
+  let opener: HTMLButtonElement | null = null;
+  document.querySelectorAll<HTMLButtonElement>('[data-certificate-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!dialog || !dialogImage) return;
+      opener = button;
+      dialogImage.src = button.dataset.src || '';
+      dialogImage.alt = button.dataset.alt || '';
+      dialog.showModal();
+      closeButton?.focus();
+    });
+  });
+  closeButton?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  dialog?.addEventListener('close', () => opener?.focus());
+</script>

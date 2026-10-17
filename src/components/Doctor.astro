@@ -1,0 +1,28 @@
+---
+import { asset } from '../data/paths';
+import { doctor, images } from '../data/site';
+import type { Content } from '../i18n/types';
+interface Props { content: Content }
+const { content } = Astro.props;
+const fields = [
+  { label: content.doctor.nameLabel, value: doctor.name || content.doctor.pending },
+  { label: content.doctor.identityLabel, value: doctor.identity || content.doctor.pendingConfirm },
+  { label: content.doctor.experienceLabel, value: doctor.experience || content.doctor.pending },
+  { label: content.doctor.specialtyLabel, value: doctor.specialty || content.doctor.pending },
+];
+---
+<section id="doctor" class="section doctor-section" aria-labelledby="doctor-title">
+  <div class="container split-grid doctor-grid">
+    <figure class="doctor-visual">
+      <img src={doctor.image ? asset(doctor.image) : asset(images.doctorPlaceholder)} alt={content.doctor.photoAlt} width="640" height="720" loading="lazy" />
+      {!doctor.image && <figcaption>{content.doctor.photoNote}</figcaption>}
+    </figure>
+    <div class="section-copy doctor-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span>{content.doctor.eyebrow}</p>
+      <h2 id="doctor-title">{content.doctor.title}</h2>
+      <p>{content.doctor.intro}</p>
+      <dl class="doctor-facts">{fields.map((field) => <div><dt>{field.label}</dt><dd>{field.value}</dd></div>)}</dl>
+      <a class="button button-primary" href="#contact">{content.doctor.cta}<span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>

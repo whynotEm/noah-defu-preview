@@ -1,0 +1,16 @@
+---
+import { pathFor } from '../data/paths';
+const destination = pathFor('pl');
+---
+<!doctype html>
+<html lang="pl-PL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <meta name="robots" content="noindex" />
+    <title>NOAH DEFU — Warszawa</title>
+    <script define:vars={{ destination }}>window.location.replace(destination + window.location.hash);</script>
+  </head>
+  <body><p><a href={destination}>Przejdź do polskiej wersji strony NOAH DEFU</a></p></body>
+</html>

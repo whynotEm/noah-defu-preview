@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import { languages, pathFor, rootPath, type Language } from '../data/paths';
+import type { Content } from '../i18n/types';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props { language: Language; content: Content }
+const { language, content } = Astro.props;
+const canonical = Astro.site ? new URL(pathFor(language), Astro.site).href : undefined;
+---
+<!doctype html>
+<html lang={language === 'zh' ? 'zh-CN' : language === 'pl' ? 'pl-PL' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#153E63" />
+    <title>{content.seo.title}</title>
+    <meta name="description" content={content.seo.description} />
+    <link rel="icon" type="image/svg+xml" href={`${rootPath()}favicon.svg`} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {languages.map((alternate) => <link rel="alternate" hreflang={alternate === 'zh' ? 'zh-CN' : alternate === 'pl' ? 'pl-PL' : 'en'} href={Astro.site ? new URL(pathFor(alternate), Astro.site).href : pathFor(alternate)} />)}
+    <link rel="alternate" hreflang="x-default" href={Astro.site ? new URL(pathFor('pl'), Astro.site).href : pathFor('pl')} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={content.seo.title} />
+    <meta property="og:description" content={content.seo.description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <!-- Verified clinic structured data can be added here after legal identity is confirmed. -->
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{content.skip}</a>
+    <Header language={language} content={content} />
+    <main id="main-content"><slot /></main>
+    <Footer language={language} content={content} />
+  </body>
+</html>

@@ -1,0 +1,29 @@
+---
+import { clinic, images, mapsUrl } from '../data/site';
+import { asset } from '../data/paths';
+import type { Content } from '../i18n/types';
+interface Props { content: Content }
+const { content } = Astro.props;
+const mailto = `mailto:${clinic.email}?subject=${encodeURIComponent(content.contact.emailSubject)}`;
+---
+<section id="contact" class="section contact-section" aria-labelledby="contact-title">
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span>{content.contact.eyebrow}</p>
+      <h2 id="contact-title">{content.contact.title}</h2>
+      <p class="contact-intro">{content.contact.intro}</p>
+      <p class="preferred-method">{content.contact.method}</p>
+      <a class="button button-primary" href={mailto}>{content.contact.emailCta}<span aria-hidden="true">↗</span></a>
+      <div class="contact-list">
+        <div><span>{content.contact.email}</span><a href={`mailto:${clinic.email}`}>{clinic.email}</a></div>
+        <div><span>{content.contact.phone}</span><a href={clinic.phoneHref}>{clinic.phoneDisplay}</a></div>
+        <div><span>{content.contact.facebook}</span><a href={clinic.facebook} target="_blank" rel="noopener noreferrer">facebook.com/chinskilekarz ↗</a></div>
+        {clinic.instagram && <div><span>{content.contact.instagram}</span><a href={clinic.instagram} target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>}
+      </div>
+    </div>
+    <div class="location-panel">
+      <div class="location-top"><span class="location-kicker">NOAH DEFU · WARSZAWA</span><h3>{content.contact.address}</h3><address>{clinic.address.street}<br />{clinic.address.postalCity}<br />{clinic.address.country}</address><a class="text-link" href={mapsUrl} target="_blank" rel="noopener noreferrer">{content.contact.map}<span aria-hidden="true">↗</span></a></div>
+      <figure class="entrance-placeholder"><img src={asset(images.entrancePlaceholder)} alt={content.contact.entranceAlt} width="760" height="360" loading="lazy" /><figcaption>{content.contact.entranceNote}</figcaption></figure>
+    </div>
+  </div>
+</section>

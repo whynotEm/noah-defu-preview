@@ -1,0 +1,33 @@
+---
+import { clinic, images } from '../data/site';
+import { asset } from '../data/paths';
+import type { Content } from '../i18n/types';
+interface Props { content: Content }
+const { content } = Astro.props;
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-rings" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span>{content.hero.eyebrow}</p>
+      <h1 id="hero-title">{content.hero.title}</h1>
+      <div class="therapy-list" aria-label={content.services.eyebrow}>{content.hero.therapies.map((therapy, index) => <><span>{therapy}</span>{index < content.hero.therapies.length - 1 && <span class="therapy-dot" aria-hidden="true">·</span>}</>)}</div>
+      <p class="hero-description">{content.hero.description}</p>
+      <div class="hero-buttons">
+        <a class="button button-primary" href="#contact">{content.hero.primary}<span aria-hidden="true">↗</span></a>
+        <a class="button button-outline" href="#services">{content.hero.secondary}<span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <figure class="hero-visual">
+      <img src={asset(images.hero)} alt={content.hero.imageAlt} width="1672" height="941" fetchpriority="high" />
+      <figcaption>{content.hero.conceptNote}</figcaption>
+    </figure>
+  </div>
+  <div class="container hero-info-wrap">
+    <div class="hero-info">
+      <div><span class="info-icon" aria-hidden="true">⌖</span><span><small>{content.hero.cityLabel}</small><strong>Warszawa, Poland</strong></span></div>
+      <div><span class="info-icon" aria-hidden="true">↗</span><span><small>{content.hero.phoneLabel}</small><a href={clinic.phoneHref}>{clinic.phoneDisplay}</a></span></div>
+      <div><span class="info-icon" aria-hidden="true">✉</span><span><small>{content.hero.emailLabel}</small><a href={`mailto:${clinic.email}`}>{clinic.email}</a></span></div>
+    </div>
+  </div>
+</section>
