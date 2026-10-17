@@ -1,6 +1,6 @@
 # NOAH DEFU — 三语言诊所网站
 
-这是华沙 NOAH DEFU 诺亚中医馆的静态官网 V1.0，提供波兰语、英语和简体中文页面。项目使用 Astro、TypeScript 和原生 CSS，无数据库或运行时后端。首屏和诊疗室图片是**概念示意图**，并非诊所实景；医师及证书为明确占位。
+这是华沙 NOAH DEFU 诺亚中医馆的静态官网 V1.1，提供波兰语、英语和简体中文页面。项目使用 Astro、TypeScript 和原生 CSS，无数据库或运行时后端。首屏和诊疗室图片是**概念示意图**，并非诊所实景；医师及证书为明确占位。
 
 预览：[桌面截图](docs/preview-desktop.png) · [600px 中文截图](docs/preview-mobile.png)。概念图生成提示词见 [图片说明](docs/image-prompts.md)。
 
@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-打开终端显示的本地地址。`/` 会跳转到波兰语版；也可以直接访问 `/pl/`、`/en/`、`/zh/`。
+打开终端显示的本地地址。`/` 会跳转到波兰语版；也可以直接访问 `/pl/`、`/en/`、`/zh/`。咨询详情页分别位于 `/pl/consultations/`、`/en/consultations/`、`/zh/consultations/`。
 
 ```sh
 npm run check
@@ -28,6 +28,8 @@ npm run preview
 | 需要修改的内容 | 文件 |
 | --- | --- |
 | 三语言文案、SEO 标题与描述、图片说明 | `src/i18n/pl.ts`、`en.ts`、`zh.ts` |
+| 草本产品提示、咨询入口和详情页文案 | 上述三语言文件的 `herbal`、`consultations` 字段 |
+| 咨询分类顺序及待审核具体疾病/症状列表 | `src/data/consultations.ts`；当前列表为空，审核前不发布具体条目 |
 | 品牌、地址、邮箱、电话、社交链接 | `src/data/site.ts` 的 `clinic` |
 | 医师姓名、身份、经历、专业方向与照片 | `src/data/site.ts` 的 `doctor` |
 | 三张证书的标题、颁发机构、年份与图片 | `src/data/site.ts` 的 `certificates` |

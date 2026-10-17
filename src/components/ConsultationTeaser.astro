@@ -1,0 +1,18 @@
+---
+import { consultationTopics } from '../data/consultations';
+import { consultationPathFor, type Language } from '../data/paths';
+import type { Content } from '../i18n/types';
+interface Props { language: Language; content: Content }
+const { language, content } = Astro.props;
+---
+<aside class="consultation-teaser" aria-labelledby="consultation-teaser-title">
+  <div class="consultation-teaser-copy">
+    <p class="eyebrow"><span class="eyebrow-line"></span>{content.consultations.eyebrow}</p>
+    <h3 id="consultation-teaser-title">{content.consultations.title}</h3>
+    <p>{content.consultations.teaser}</p>
+  </div>
+  <ul class="consultation-tags" aria-label={content.consultations.title}>
+    {consultationTopics.map((topic) => <li>{content.consultations.categories[topic.id].title}</li>)}
+  </ul>
+  <a class="button button-outline" href={consultationPathFor(language)}>{content.consultations.link}<span aria-hidden="true">↗</span></a>
+</aside>

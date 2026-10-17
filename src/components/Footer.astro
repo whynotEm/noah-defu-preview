@@ -2,13 +2,14 @@
 import { clinic } from '../data/site';
 import { pathFor, type Language } from '../data/paths';
 import type { Content } from '../i18n/types';
-interface Props { language: Language; content: Content }
-const { language, content } = Astro.props;
+interface Props { language: Language; content: Content; page?: 'home' | 'consultations' }
+const { language, content, page = 'home' } = Astro.props;
+const sectionHref = (id: string) => page === 'home' ? `#${id}` : pathFor(language, `#${id}`);
 ---
 <footer class="site-footer">
   <div class="container footer-main">
     <div class="footer-brand"><a class="brand brand-light" href={pathFor(language)}><span class="brand-mark" aria-hidden="true"><span></span></span><span class="brand-copy"><strong>{clinic.brand}</strong><small>{clinic.polishName}</small></span></a><p>{content.footer.tagline}</p></div>
-    <div><h2>{content.footer.explore}</h2><nav aria-label={content.footer.explore}><a href="#about">{content.nav.about}</a><a href="#services">{content.nav.services}</a><a href="#doctor">{content.nav.doctor}</a><a href="#certificates">{content.nav.certificates}</a></nav></div>
+    <div><h2>{content.footer.explore}</h2><nav aria-label={content.footer.explore}><a href={sectionHref('about')}>{content.nav.about}</a><a href={sectionHref('services')}>{content.nav.services}</a><a href={sectionHref('doctor')}>{content.nav.doctor}</a><a href={sectionHref('certificates')}>{content.nav.certificates}</a></nav></div>
     <div><h2>{content.footer.contact}</h2><address>{clinic.address.street}<br />{clinic.address.postalCity}<br />{clinic.address.country}</address><a href={`mailto:${clinic.email}`}>{clinic.email}</a><a href={clinic.phoneHref}>{clinic.phoneDisplay}</a><a href={clinic.facebook} target="_blank" rel="noopener noreferrer">Facebook ↗</a>{clinic.instagram && <a href={clinic.instagram} target="_blank" rel="noopener noreferrer">Instagram ↗</a>}</div>
   </div>
   <div class="container footer-bottom"><span>© {new Date().getFullYear()} {clinic.brand}. {content.footer.rights}</span><span>{content.footer.conceptDisclaimer}</span></div>

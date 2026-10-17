@@ -1,9 +1,10 @@
 ---
 import { clinic } from '../data/site';
-import { pathFor, languages, type Language } from '../data/paths';
+import { consultationPathFor, pathFor, languages, type Language } from '../data/paths';
 import type { Content } from '../i18n/types';
-interface Props { language: Language; content: Content }
-const { language, content } = Astro.props;
+interface Props { language: Language; content: Content; page?: 'home' | 'consultations' }
+const { language, content, page = 'home' } = Astro.props;
+const sectionHref = (id: string) => page === 'home' ? `#${id}` : pathFor(language, `#${id}`);
 const nav = [
   { id: 'about', label: content.nav.about },
   { id: 'services', label: content.nav.services },
@@ -18,16 +19,16 @@ const nav = [
       <span class="brand-copy"><strong>{clinic.brand}</strong><small>{clinic.polishName}</small></span>
     </a>
     <nav class="primary-nav" aria-label={language === 'pl' ? 'Nawigacja główna' : language === 'en' ? 'Main navigation' : '主导航'}>
-      {nav.map((item) => <a href={`#${item.id}`}>{item.label}</a>)}
+      {nav.map((item) => <a href={sectionHref(item.id)}>{item.label}</a>)}
     </nav>
     <div class="header-actions">
       <nav class="language-nav" aria-label={content.nav.language}>
         {languages.map((code, index) => <>
           {index > 0 && <span aria-hidden="true" class="language-divider">/</span>}
-          <a href={pathFor(code)} data-language-link aria-current={code === language ? 'page' : undefined} lang={code === 'zh' ? 'zh-CN' : code === 'pl' ? 'pl-PL' : 'en'}>{code === 'zh' ? '中文' : code.toUpperCase()}</a>
+          <a href={page === 'consultations' ? consultationPathFor(code) : pathFor(code)} data-language-link aria-current={code === language ? 'page' : undefined} lang={code === 'zh' ? 'zh-CN' : code === 'pl' ? 'pl-PL' : 'en'}>{code === 'zh' ? '中文' : code.toUpperCase()}</a>
         </>)}
       </nav>
-      <a class="button button-primary header-cta" href="#contact">{content.nav.book}<span aria-hidden="true"> ↗</span></a>
+      <a class="button button-primary header-cta" href={sectionHref('contact')}>{content.nav.book}<span aria-hidden="true"> ↗</span></a>
     </div>
   </div>
 </header>

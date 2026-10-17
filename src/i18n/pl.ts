@@ -1,6 +1,21 @@
 import type { Content } from './types';
 
 export const pl: Content = {
+  herbal: { title: 'Produkty ziołowe', description: 'W gabinecie dostępne są również gotowe produkty ziołowe. Aby uzyskać więcej informacji, skontaktuj się z nami.', link: 'Skontaktuj się z nami' },
+  consultations: {
+    eyebrow: 'CONSULTATION TOPICS', title: 'Zakres konsultacji', teaser: 'Poznaj najczęstsze tematy konsultacji i informacje o usługach. W sprawie indywidualnej sytuacji skontaktuj się z gabinetem.', link: 'Zobacz zakres konsultacji',
+    seo: { title: 'Zakres konsultacji | NOAH DEFU Warszawa', description: 'Poznaj tematy konsultacji w gabinecie NOAH DEFU w Warszawie. Skontaktuj się z nami, aby omówić zakres usług i wizytę.' },
+    breadcrumbHome: 'Strona główna', intro: 'Poniższe informacje przybliżają tematy konsultacji. Aby ustalić, czy dana usługa może być odpowiednia w Twojej sytuacji, skontaktuj się bezpośrednio z gabinetem.', scopeNote: 'Kategorie mają charakter informacyjny i nie oznaczają, że gabinet leczy wszystkie powiązane schorzenia.',
+    ctaTitle: 'Masz inne pytania?', ctaDescription: 'Skontaktuj się z nami, aby poznać zakres usług gabinetu i możliwości umówienia wizyty.', ctaLink: 'Skontaktuj się z gabinetem',
+    categories: {
+      musculoskeletal: { title: 'Mięśnie, stawy i dolegliwości bólowe', description: 'Jeśli masz pytania dotyczące mięśni, stawów lub bólu, skontaktuj się z gabinetem, aby omówić swoją sytuację.' },
+      sleepStress: { title: 'Sen i stres', description: 'W kwestiach związanych ze snem lub stresem możesz zapytać gabinet o możliwość konsultacji.' },
+      digestive: { title: 'Układ pokarmowy', description: 'Jeśli chcesz porozmawiać o zagadnieniach związanych z układem pokarmowym, zapytaj o zakres usług gabinetu.' },
+      womensHealth: { title: 'Zdrowie kobiet', description: 'Pytania dotyczące zdrowia kobiet warto omówić z gabinetem przed ustaleniem terminu wizyty.' },
+      headSenses: { title: 'Głowa i narządy zmysłów', description: 'W sprawach dotyczących głowy lub zmysłów skontaktuj się z gabinetem i opisz swoją sytuację.' },
+      respiratoryAllergy: { title: 'Oddychanie i alergie', description: 'W kwestiach związanych z oddychaniem lub alergiami najpierw omów swoje potrzeby z gabinetem.' },
+    },
+  },
   seo: { title: 'NOAH DEFU | Gabinet Chińskiej Medycyny w Warszawie', description: 'NOAH DEFU w Warszawie. Akupunktura, masaż leczniczy i bańki w spokojnym gabinecie przy Alejach Jerozolimskich 25. Skontaktuj się z nami.' },
   skip: 'Przejdź do treści',
   nav: { about: 'O nas', services: 'Terapie', doctor: 'Specjalista', certificates: 'Certyfikaty', contact: 'Kontakt', book: 'Umów konsultację', language: 'Wybierz język' },

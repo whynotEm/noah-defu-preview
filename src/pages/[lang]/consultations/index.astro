@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { consultationTopics } from '../../../data/consultations';
+import { languages, pathFor, type Language } from '../../../data/paths';
+import { getContent } from '../../../i18n';
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({ params: { lang }, props: { language: lang } }));
+}
+
+interface Props { language: Language }
+const { language } = Astro.props;
+const content = getContent(language);
+---
+<BaseLayout language={language} content={content} page="consultations">
+  <section class="consultations-hero" aria-labelledby="consultations-title">
+    <div class="container consultations-hero-inner">
+      <nav class="breadcrumbs" aria-label={language === 'pl' ? 'Ścieżka nawigacji' : language === 'en' ? 'Breadcrumb' : '面包屑导航'}>
+        <a href={pathFor(language)}>{content.consultations.breadcrumbHome}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{content.consultations.title}</span>
+      </nav>
+      <p class="eyebrow"><span class="eyebrow-line"></span>{content.consultations.eyebrow}</p>
+      <h1 id="consultations-title">{content.consultations.title}</h1>
+      <p class="consultations-intro">{content.consultations.intro}</p>
+    </div>
+  </section>
+  <section class="consultations-content" aria-labelledby="consultations-title">
+    <div class="container consultations-list-wrap">
+      <p class="consultations-scope-note">{content.consultations.scopeNote}</p>
+      <div class="consultations-list">
+        {consultationTopics.map((topic, index) => {
+          const titleId = `topic-title-${index + 1}`;
+          const panelId = `topic-panel-${index + 1}`;
+          const category = content.consultations.categories[topic.id];
+          return <article class="consultation-item">
+            <h2 id={titleId}>
+              <button type="button" class="consultation-toggle" aria-expanded="false" aria-controls={panelId} data-consultation-toggle>
+                <span class="consultation-number">{String(index + 1).padStart(2, '0')}</span>
+                <span class="consultation-name">{category.title}</span>
+                <span class="consultation-plus" aria-hidden="true"></span>
+              </button>
+            </h2>
+            <div id={panelId} class="consultation-panel" role="region" aria-labelledby={titleId} hidden><p>{category.description}</p></div>
+          </article>;
+        })}
+      </div>
+    </div>
+  </section>
+  <section class="consultations-cta" aria-labelledby="consultations-cta-title">
+    <div class="container consultations-cta-inner">
+      <div><h2 id="consultations-cta-title">{content.consultations.ctaTitle}</h2><p>{content.consultations.ctaDescription}</p></div>
+      <a class="button button-primary" href={pathFor(language, '#contact')}>{content.consultations.ctaLink}<span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-consultation-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const panel = document.getElementById(button.getAttribute('aria-controls') ?? '');
+      if (!panel) return;
+      const open = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!open));
+      panel.hidden = open;
+    });
+  });
+</script>
+</BaseLayout>

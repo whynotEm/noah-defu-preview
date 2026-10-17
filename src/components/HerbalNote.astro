@@ -1,0 +1,10 @@
+---
+import type { Content } from '../i18n/types';
+interface Props { content: Content }
+const { content } = Astro.props;
+---
+<aside class="herbal-note" aria-labelledby="herbal-title">
+  <span class="herbal-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M39 9C25 9 12 13 10 27c-1 7 4 12 11 12 14-2 18-16 18-30Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 40c5-9 13-16 23-22M19 30l-1-8M26 24l8 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  <div class="herbal-copy"><h3 id="herbal-title">{content.herbal.title}</h3><p>{content.herbal.description}</p></div>
+  <a class="text-link" href="#contact">{content.herbal.link}<span aria-hidden="true">↗</span></a>
+</aside>

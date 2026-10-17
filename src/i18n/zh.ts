@@ -1,6 +1,21 @@
 import type { Content } from './types';
 
 export const zh: Content = {
+  herbal: { title: '草本产品', description: '诊所另有包装好的草本产品可供选购，详情请联系我们。', link: '了解更多' },
+  consultations: {
+    eyebrow: 'CONSULTATION TOPICS', title: '常见咨询方向', teaser: '了解常见咨询主题及相关服务信息，具体情况欢迎联系诊所。', link: '查看详细咨询方向',
+    seo: { title: '常见咨询方向｜NOAH DEFU 诺亚中医馆', description: '了解诺亚中医馆的常见咨询主题。具体服务范围及预约事宜，请直接联系华沙诊所。' },
+    breadcrumbHome: '首页', intro: '以下内容帮助访客了解相关咨询主题。具体是否适合接受某项服务，请与诊所直接沟通。', scopeNote: '以下分类仅供了解咨询主题，不代表诊所已确认提供相关疾病的治疗。',
+    ctaTitle: '还有其他问题？', ctaDescription: '欢迎联系我们了解诊所的服务范围及预约事宜。', ctaLink: '联系诊所',
+    categories: {
+      musculoskeletal: { title: '肌肉、关节与疼痛相关', description: '如有肌肉、关节或疼痛方面的问题，可联系诊所说明具体情况，了解是否适合咨询。' },
+      sleepStress: { title: '睡眠与压力相关', description: '可就睡眠与压力相关的困扰与诊所交流，了解咨询安排。' },
+      digestive: { title: '消化系统相关', description: '如希望讨论消化系统相关问题，请先联系诊所了解服务范围。' },
+      womensHealth: { title: '女性健康相关', description: '女性健康方面的问题可在预约前与诊所沟通，以确认适合的咨询方式。' },
+      headSenses: { title: '头部及感觉相关', description: '如有头部或感觉方面的疑问，可联系诊所介绍自身情况。' },
+      respiratoryAllergy: { title: '呼吸与过敏相关', description: '有关呼吸与过敏的咨询主题，请先与诊所沟通具体需求。' },
+    },
+  },
   seo: { title: 'NOAH DEFU 诺亚中医馆｜华沙中医诊所', description: '诺亚中医馆位于华沙 Aleje Jerozolimskie 25，提供针灸、治疗性按摩和拔罐服务。欢迎通过邮件或电话咨询。' },
   skip: '跳转到主要内容',
   nav: { about: '关于我们', services: '服务项目', doctor: '专业人员', certificates: '资质证书', contact: '联系我们', book: '预约咨询', language: '选择语言' },

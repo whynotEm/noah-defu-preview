@@ -1,6 +1,21 @@
 import type { Content } from './types';
 
 export const en: Content = {
+  herbal: { title: 'Herbal Products', description: 'Packaged herbal products are also available at the clinic. Contact us for more information.', link: 'Contact us' },
+  consultations: {
+    eyebrow: 'CONSULTATION TOPICS', title: 'Consultation Topics', teaser: 'Explore common consultation topics and related service information. Please contact the clinic to discuss your situation.', link: 'View Consultation Topics',
+    seo: { title: 'Consultation Topics | NOAH DEFU Warsaw', description: 'Explore common consultation topics at NOAH DEFU in Warsaw. Contact the clinic directly to discuss services and appointments.' },
+    breadcrumbHome: 'Home', intro: 'The information below introduces common consultation topics. Please contact the clinic directly to discuss whether a service may be suitable for you.', scopeNote: 'These are informational categories, not a claim that the clinic treats every related condition.',
+    ctaTitle: 'Have another question?', ctaDescription: 'Contact us to learn about the clinic’s services and appointments.', ctaLink: 'Contact the clinic',
+    categories: {
+      musculoskeletal: { title: 'Muscles, joints and pain', description: 'If you have questions about muscles, joints or pain, contact the clinic to discuss your situation and consultation options.' },
+      sleepStress: { title: 'Sleep and stress', description: 'Discuss sleep or stress concerns with the clinic to learn how a consultation can be arranged.' },
+      digestive: { title: 'Digestive health', description: 'For digestive health questions, contact the clinic to learn about its service scope.' },
+      womensHealth: { title: 'Women’s health', description: 'You can raise women’s health questions before booking to clarify the available consultation options.' },
+      headSenses: { title: 'Head and sensory concerns', description: 'If you have questions relating to the head or senses, contact the clinic to explain your situation.' },
+      respiratoryAllergy: { title: 'Breathing and allergies', description: 'For breathing or allergy related questions, please discuss your needs with the clinic first.' },
+    },
+  },
   seo: { title: 'NOAH DEFU | Traditional Chinese Medicine in Warsaw', description: 'NOAH DEFU in Warsaw offers acupuncture, therapeutic massage and cupping. Find us at Aleje Jerozolimskie 25 and get in touch about a visit.' },
   skip: 'Skip to content',
   nav: { about: 'About', services: 'Therapies', doctor: 'Specialist', certificates: 'Certificates', contact: 'Contact', book: 'Request a visit', language: 'Choose a language' },

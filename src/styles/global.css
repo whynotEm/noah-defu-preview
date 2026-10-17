@@ -121,6 +121,50 @@ section[id] { scroll-margin-top: 105px; }
 .service-card p { font-size: 14px; line-height: 1.75; margin-bottom: 28px; }
 .service-card .text-link { margin-top: auto; align-self: start; }
 
+/* Service extensions */
+.herbal-note { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; gap: 20px; margin-top: 22px; padding: 21px 26px; background: #e8f3f9; border: 1px solid #d5e7f1; border-radius: 12px; }
+.herbal-icon { display: grid; place-items: center; width: 44px; height: 44px; color: var(--blue); }
+.herbal-icon svg { width: 38px; height: 38px; }
+.herbal-copy h3 { margin-bottom: 4px; font-size: 18px; font-weight: 650; }
+.herbal-copy p { margin: 0; font-size: 13px; line-height: 1.6; }
+.herbal-note .text-link { white-space: nowrap; }
+.consultation-teaser { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr) auto; align-items: center; gap: 30px; margin-top: 28px; padding: 27px 30px; background: var(--white); border: 1px solid var(--border); border-radius: 12px; }
+.consultation-teaser .eyebrow { margin-bottom: 10px; font-size: 10px; }
+.consultation-teaser h3 { margin-bottom: 7px; font-size: 21px; font-weight: 650; }
+.consultation-teaser-copy > p:last-child { margin: 0; font-size: 13px; line-height: 1.6; }
+.consultation-tags { display: flex; flex-wrap: wrap; gap: 7px; align-content: center; margin: 0; padding: 0; list-style: none; }
+.consultation-tags li { padding: 6px 9px; color: var(--navy); background: var(--pale-blue); border: 1px solid var(--border); border-radius: 5px; font-size: 11px; line-height: 1.35; }
+.consultation-teaser .button { white-space: normal; text-align: center; }
+
+/* Consultation details */
+.consultations-hero { background: linear-gradient(120deg, #fbfdff, var(--pale-blue)); border-bottom: 1px solid var(--border); }
+.consultations-hero-inner { padding-block: 47px 71px; }
+.breadcrumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 11px; margin-bottom: 58px; color: var(--muted); font-size: 12px; }
+.breadcrumbs a:hover { color: var(--blue); }
+.consultations-hero .eyebrow { margin-bottom: 17px; }
+.consultations-hero h1 { margin-bottom: 21px; font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.16; font-weight: 650; }
+.consultations-intro { max-width: 730px; margin: 0; font-size: 17px; }
+.consultations-content { padding-block: 64px 86px; }
+.consultations-list-wrap { max-width: 950px; }
+.consultations-scope-note { margin-bottom: 28px; color: var(--muted); font-size: 13px; }
+.consultations-list { border-top: 1px solid var(--border); }
+.consultation-item { border-bottom: 1px solid var(--border); }
+.consultation-item h2 { margin: 0; font-size: inherit; }
+.consultation-toggle { display: flex; align-items: center; gap: 22px; width: 100%; min-height: 86px; padding: 19px 8px; color: var(--navy); background: none; border: 0; text-align: left; cursor: pointer; }
+.consultation-toggle:hover .consultation-name { color: var(--blue); }
+.consultation-number { flex: none; color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+.consultation-name { flex: 1; font-size: 20px; font-weight: 650; line-height: 1.35; transition: color .2s; }
+.consultation-plus { position: relative; flex: none; width: 22px; height: 22px; border: 1px solid #bdd3e2; border-radius: 50%; }
+.consultation-plus::before, .consultation-plus::after { content: ""; position: absolute; left: 5px; top: 10px; width: 10px; height: 1px; background: var(--blue); }
+.consultation-plus::after { transform: rotate(90deg); transition: transform .2s; }
+.consultation-toggle[aria-expanded="true"] .consultation-plus::after { transform: rotate(0); }
+.consultation-panel { padding: 0 46px 24px; }
+.consultation-panel p { max-width: 740px; margin: 0; font-size: 15px; }
+.consultations-cta { background: var(--pale-blue); border-top: 1px solid var(--border); }
+.consultations-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 35px; padding-block: 58px; }
+.consultations-cta h2 { margin-bottom: 9px; font-size: 25px; font-weight: 650; }
+.consultations-cta p { margin: 0; font-size: 15px; }
+
 /* Doctor */
 .doctor-section { padding-bottom: 72px; }
 .doctor-grid { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); }
@@ -199,6 +243,9 @@ section[id] { scroll-margin-top: 105px; }
   .section-heading { display: block; }.section-heading > p { margin-top: 22px; }
   .contact-grid { gap: 45px; }.location-panel { max-width: 650px; }
   .footer-main { gap: 32px; }
+  .consultation-teaser { grid-template-columns: minmax(0, 1fr) auto; }
+  .consultation-tags { grid-column: 1 / -1; grid-row: 2; }
+  .consultation-teaser .button { grid-column: 2; grid-row: 1; }
 }
 @media (max-width: 620px) {
   .container { width: min(calc(100% - 36px), var(--container)); }
@@ -222,6 +269,20 @@ section[id] { scroll-margin-top: 105px; }
   .contact-list > div { grid-template-columns: 1fr; gap: 3px; }.location-top { padding: 26px; }
   .footer-main { grid-template-columns: 1fr 1fr; gap: 40px 25px; }.footer-brand { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; gap: 7px; }
+  .herbal-note { grid-template-columns: 39px minmax(0, 1fr); gap: 12px; padding: 18px; }
+  .herbal-icon { width: 36px; height: 36px; }
+  .herbal-icon svg { width: 34px; height: 34px; }
+  .herbal-note .text-link { grid-column: 2; justify-self: start; white-space: normal; }
+  .consultation-teaser { display: block; padding: 22px; }
+  .consultation-tags { margin-block: 18px 20px; }
+  .consultations-hero-inner { padding-block: 30px 56px; }
+  .breadcrumbs { margin-bottom: 45px; }
+  .consultations-intro { font-size: 16px; }
+  .consultations-content { padding-block: 47px 66px; }
+  .consultation-toggle { gap: 14px; min-height: 75px; padding-block: 15px; }
+  .consultation-name { font-size: 17px; }
+  .consultation-panel { padding-left: 34px; padding-right: 8px; }
+  .consultations-cta-inner { align-items: start; flex-direction: column; gap: 23px; padding-block: 48px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
